@@ -3,10 +3,8 @@ public class BinaryNode {
     private Comparable thing;
     private BinaryNode left, right;
     
-    public BinaryNode (Comparable j, BinaryNode k, BinaryNode l) {
+    public BinaryNode (Comparable j) {
         thing = j;
-        left = k;
-        right = l;
     }
     
     public Comparable get() {
@@ -19,6 +17,14 @@ public class BinaryNode {
     
     public BinaryNode right() {
         return right;
+    }
+    
+    public void setLeft(BinaryNode x) {
+        left = x;
+    }
+    
+    public void setRight(BinaryNode x) {
+        right = x;
     }
     
     public String toString() {
