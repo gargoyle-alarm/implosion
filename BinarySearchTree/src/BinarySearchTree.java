@@ -10,23 +10,77 @@ public class BinarySearchTree {
     // -- TRAVERSALS --
 	    
     	public String preOrder() {
-			return null;
-			// TO-DO 
+			return preOrder(root).trim();
 	    }
+    	
+    	private String preOrder(BinaryNode k)
+    	{
+    		String temp = "";
+    		if(k != null)
+    		{
+    			// use value
+    			temp += k.getValue()+ " ";
+    			// go left
+    			temp += preOrder(k.left());
+    			// go right
+    			temp += preOrder(k.right());
+    		}
+    		return temp;
+    	}
+
 	    
 	    public String postOrder() {
-			return null;
-			// TO-DO 
+			return postOrder(root).trim();
+	    }
+	    
+	    private String postOrder(BinaryNode k) {
+	    	String temp = "";
+    		if(k != null)
+    		{
+    			// go left
+    			temp += preOrder(k.left());
+    			// go right
+    			temp += preOrder(k.right());
+    			// use value
+    			temp += k.getValue()+ " ";
+    		}
+    		return temp;
 	    }
 	    
 	    public String inOrder() {
-			return null;
-			// TO-DO 
+			return inOrder(root).trim();
+	    }
+	    
+	    public String inOrder(BinaryNode k) {
+	    	String temp = "";
+    		if(k != null)
+    		{
+    			// go left
+    			temp += preOrder(k.left());
+    			// use value
+    			temp += k.getValue()+ " ";
+    			// go right
+    			temp += preOrder(k.right());
+    		}
+    		return temp;
 	    }
 	    
 	    public String reverseOrder() {
-	    	return null;
-	    	// TO-DO
+	    	return reverseOrder(root);
+	    }
+	    
+	    public String reverseOrder(BinaryNode k) {
+	    	String temp = "";
+    		if(k != null)
+    		{
+    			// go right
+    			temp += preOrder(k.right());
+    			// use value
+    			temp += k.getValue()+ " ";
+    			// go left
+    			temp += preOrder(k.left());
+    		}
+    		return temp;
 	    }
 	    
 	    public String levelOrder() {
@@ -117,14 +171,14 @@ public class BinarySearchTree {
     }
     
     public void add(BinaryNode parent, BinaryNode x) {
-    	if(parent == null) return;
-    	if(x.getValue().compareTo(parent.getValue()) < 0)
-			if(parent.left()==null)
+    	if(parent == null) return; // if parent is null, something has gone wrong
+    	if(x.getValue().compareTo(parent.getValue()) < 0) // if x is less than parent
+			if(parent.left()==null) // if no left child
 				parent.setLeft(x);
 			else
 				add(parent.left(),x);
-		else
-			if(parent.right()==null)
+		else // x greater
+			if(parent.right()==null) // if no right child
 				parent.setRight(x);
 			else
 				add(parent.right(),x);
