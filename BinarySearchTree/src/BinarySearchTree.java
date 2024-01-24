@@ -1,4 +1,9 @@
 //@SuppressWarnings("unchecked")
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 public class BinarySearchTree {
     
 	private BinaryNode root;
@@ -84,8 +89,20 @@ public class BinarySearchTree {
 	    }
 	    
 	    public String levelOrder() {
-			return null;
-			// TO-DO 
+	    	String temp = "";
+			Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
+			queue.offer(root);
+			while(!queue.isEmpty()) 
+			{
+				BinaryNode k = queue.poll();
+				temp += k.getValue()+" ";
+				if(k.left()!=null)
+					queue.offer(k.left());
+				if(k.right()!=null)
+					queue.offer(k.right());
+			}
+			return temp.trim();
+
 	    }
     
 	// -- GET DATA --
