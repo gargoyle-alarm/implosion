@@ -108,11 +108,24 @@ public class BinarySearchTree {
 	// -- GET DATA --
     
 		public int numLeaves() {
-	    	return -1;
-	    	// TO-DO
+			return numLeaves(root);
 	    }
-	    
-	    public int numLevels() {
+		
+	    private int numLeaves(BinaryNode k) {
+	    	int i = 0;
+    		if(k != null)
+    		{
+    			// go left
+    			i += numLeaves(k.left());
+    			// go right
+    			i += numLeaves(k.right());
+    			// use value
+    			i++;
+    		}
+    	return i;
+	    }
+
+		public int numLevels() {
 	    	return -1;
 	    	// TO-DO
 	    }
