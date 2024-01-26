@@ -107,18 +107,18 @@ public class BinarySearchTree {
     
 	// -- GET DATA --
     
-		public int numLeaves() {
-			return numLeaves(root);
+		public int numNodes() {
+			return numNodes(root);
 	    }
 		
-	    private int numLeaves(BinaryNode k) {
+	    private int numNodes(BinaryNode k) {
 	    	int i = 0;
     		if(k != null)
     		{
     			// go left
-    			i += numLeaves(k.left());
+    			i += numNodes(k.left());
     			// go right
-    			i += numLeaves(k.right());
+    			i += numNodes(k.right());
     			// use value
     			i++;
     		}
@@ -147,9 +147,22 @@ public class BinarySearchTree {
 	    	
 	    }
 	    
-	    public int numNodes() {
-	    	return -1;
-	    	// TO-DO 
+	    public int numLeaves() {
+	    	return numLeaves(root);
+	    }
+	    
+	    public int numLeaves(BinaryNode k) {
+	    	int i = 0;
+    		if(k != null) {
+    			if (k.left() == null && k.right() == null) {
+    				i++;
+    			}
+    			// go left
+    			i += numLeaves(k.left());
+    			// go right
+    			i += numLeaves(k.right());
+    		}
+    	return i;
 	    }
 	    
 	    public int eachWidth() {
@@ -162,17 +175,19 @@ public class BinarySearchTree {
 	    	// TO-DO 
 	    }
 	    
-	    public boolean has(Comparable y) {
+	    public boolean has(String y) {
+	    	if (levelOrder().contains(y)) {
+	    		return true;
+	    	}
 	    	return false;
-	    	// TO-DO 
 	    }
 	    
-	    public Comparable getLargest() {
+	    public String getLargest() {
 	    	return null;
 	    	// TO-DO 
 	    }
 	    
-	    public Comparable getSmallest() {
+	    public String getSmallest() {
 	    	return null;
 	    	// TO-DO 
 	    }
