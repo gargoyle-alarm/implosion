@@ -7,7 +7,7 @@ public class BinaryNode {
         thing = j;
     }
     
-    public Comparable getValue() {
+    public String getValue() {
         return thing;
     }
     

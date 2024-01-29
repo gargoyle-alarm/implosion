@@ -12,6 +12,10 @@ public class BinarySearchTree {
     	root = null;
     }
     
+    public BinarySearchTree(BinaryNode k) {
+    	root = k;
+    }
+    
     // -- TRAVERSALS --
 	    
     	public String preOrder() {
@@ -135,10 +139,65 @@ public class BinarySearchTree {
 	    	// TO-DO 
 	    }
 	    
+	    /*
+		public int findHeight(){
+		    if(this.isEmpty()){
+		        return 0;
+		    }
+		    else{
+		        TreeNode<T> node = root;
+		        return findHeight(node);
+		    }
+		}
+		private int findHeight(TreeNode<T> aNode){
+		    int heightLeft = 0;
+		    int heightRight = 0;
+		    if(aNode.left!=null)
+		        heightLeft = findHeight(aNode.left);
+		    if(aNode.right!=null)
+		        heightRight = findHeight(aNode.right);
+		    if(heightLeft > heightRight){
+		        return heightLeft+1;
+		    }
+		    else{
+		        return heightRight+1;
+		    }
+		}
+		response
+		int findHeight(TreeNode<T> aNode) {
+		    if (aNode == null) {
+		        return -1;
+		    }
+		
+		    int lefth = findHeight(aNode.left);
+		    int righth = findHeight(aNode.right);
+		
+		    if (lefth > righth) {
+		        return lefth + 1;
+		    } else {
+		        return righth + 1;
+		    }
+		}
+		
+	    */
+	    
 	    public int height() {
-	    	return -1;
-	    	// TO-DO 
-	    	
+	    	return height(root);
+	    }
+	    
+	    public int height(BinaryNode k) {
+	    	if (k == null) {
+		        return -1;
+		    }
+		
+		    int lefth = height(k.left());
+		    int righth = height(k.right());
+		
+		    if (lefth > righth) {
+		        return lefth + 1;
+		    } else {
+		        return righth + 1;
+		    }
 	    }
 	    
 	    public int diameter() {
@@ -183,17 +242,37 @@ public class BinarySearchTree {
 	    }
 	    
 	    public String getLargest() {
-	    	return null;
-	    	// TO-DO 
+	        return getLargest(root);   
+	    }
+	    
+	    public String getLargest(BinaryNode k) {
+	        int temp = 0;
+	        if (k != null) {
+	            if (temp < Integer.parseInt(k.getValue())) temp = Integer.parseInt(k.getValue());
+	            getLargest(k.left());
+	            getLargest(k.right());
+	        }
+	        return "" + temp;
 	    }
 	    
 	    public String getSmallest() {
-	    	return null;
-	    	// TO-DO 
+	        return getSmallest(root);
+	    }
+	    
+	    public String getSmallest(BinaryNode k) {
+	        int temp = 0;
+	        if (k != null) {
+	            if (temp > Integer.parseInt(k.getValue())) temp = Integer.parseInt(k.getValue());
+	            getSmallest(k.left());
+	            getSmallest(k.right());
+	            
+	        }
+	        return "" + temp;
 	    }
     
 	// -- tostring -- 
     public String toString() {
+    	
     	return "tree";
     	// TO-DO 
     }
