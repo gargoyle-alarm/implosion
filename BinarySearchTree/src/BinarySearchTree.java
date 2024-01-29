@@ -130,56 +130,44 @@ public class BinarySearchTree {
 	    }
 
 		public int numLevels() {
-	    	return -1;
-	    	// TO-DO
+	    	if(root == null) {
+	    		return 0;
+	    	}
+	    	Queue<BinaryNode> tree = new LinkedList();
+	    	tree.add(root);
+	    	int l = 0;
+	    	while (!tree.isEmpty()) {
+	    		int len = tree.size();
+	    		l++;
+	    		for (int i = 0; i < len; i++) {
+	    			BinaryNode n = tree.remove();
+	    			if(n.right() != null) { tree.add(n.right()); }
+	    			if(n.left() != null) { tree.add(n.left()); }
+	    		}
+	    	}
+	    	return l;
 	    }
 	    
 	    public int width() {
-	    	return -1;
-	    	// TO-DO 
+	    	if(root == null) {
+	    		return 0;
+	    	}
+	    	Queue<BinaryNode> tree = new LinkedList();
+	    	tree.add(root);
+	    	int w = 0;
+	    	while (!tree.isEmpty()) {
+	    		int len = tree.size();
+	    		w = Math.max(len, w);
+	    		for (int i = 0; i < len; i++) {
+	    			BinaryNode n = tree.remove();
+	    			if(n.right() != null) { tree.add(n.right()); }
+	    			if(n.left() != null) { tree.add(n.left()); }
+	    		}
+	    	// goes through every level by first knocking out a node and then adding its children, like a queue.
+	    	// each iteration, only the specific level's children gets knocked out because of the len parameter.
+	    	}
+	    	return w;
 	    }
-	    
-	    /*
-		public int findHeight(){
-		    if(this.isEmpty()){
-		        return 0;
-		    }
-		    else{
-		        TreeNode<T> node = root;
-		        return findHeight(node);
-		    }
-		}
-		private int findHeight(TreeNode<T> aNode){
-		    int heightLeft = 0;
-		    int heightRight = 0;
-		    if(aNode.left!=null)
-		        heightLeft = findHeight(aNode.left);
-		    if(aNode.right!=null)
-		        heightRight = findHeight(aNode.right);
-		    if(heightLeft > heightRight){
-		        return heightLeft+1;
-		    }
-		    else{
-		        return heightRight+1;
-		    }
-		}
-		response
-		int findHeight(TreeNode<T> aNode) {
-		    if (aNode == null) {
-		        return -1;
-		    }
-		
-		    int lefth = findHeight(aNode.left);
-		    int righth = findHeight(aNode.right);
-		
-		    if (lefth > righth) {
-		        return lefth + 1;
-		    } else {
-		        return righth + 1;
-		    }
-		}
-		
-	    */
 	    
 	    public int height() {
 	    	return height(root);
@@ -201,9 +189,17 @@ public class BinarySearchTree {
 	    }
 	    
 	    public int diameter() {
-	    	return -1;
-	    	// TO-DO 
-	    	
+	    	return diameter(root);
+	    }
+	    
+	    public int diameter(BinaryNode k) {
+	    	if (k == null) {
+		        return -1;
+		    }
+		
+		    int lefth = diameter(k.left());
+		    int righth = diameter(k.right());
+		    return lefth + 1 + righth;
 	    }
 	    
 	    public int numLeaves() {
@@ -226,7 +222,7 @@ public class BinarySearchTree {
 	    
 	    public int eachWidth() {
 	    	return -1;
-	    	// TO-DO 
+	    	// recursively print out "width at level # #(width)"
 	    }
 	    
 	    public boolean isFull() {
