@@ -1,35 +1,59 @@
-//@SuppressWarnings("unchecked")
-public class BinaryNode {
-    private Comparable thing;
-    private BinaryNode left, right;
+@SuppressWarnings("unchecked")
+public class BinaryNode{ 
     
-    public BinaryNode (Comparable j) {
-        thing = j;
-    }
+private BinaryNode left; 
+
+private BinaryNode right; 
+
+private String myVal; 
+
+public BinaryNode(String val){ 
     
-    public String getValue() {
-        return thing;
-    }
+myVal=val; 
+
+left=null;
+
+ right=null;
+ 
+ }
+ public void setRight(BinaryNode ri){ 
+     
+right=ri; 
+
+}
+ public void setLeft(BinaryNode le){ 
+     
+left=le; 
+
+} 
+
+public BinaryNode left(){
     
-    public BinaryNode left() {
-        return left;
-    }
+ return left;
+ } 
+public BinaryNode right(){
     
-    public BinaryNode right() {
-        return right;
-    }
+ return right; 
+ 
+} 
+
+public String value(){ 
     
-    public void setLeft(BinaryNode x) {
-        left = x;
-    }
-    
-    public void setRight(BinaryNode x) {
-        right = x;
-    }
-    
-    public String toString() {
-    	return thing + "";
-    }
+return myVal;
+
+ }
+ 
+ public void setValue(String str){
+     
+ myVal=str; 
+ 
+} 
+
 }
 
 
+
+/*public String toString() {
+		return "Value: "+ myVal+ ", Left: "+(left == null?null:left.myVal)+ ", Right:"+ (right == null? null: right.myVal);
+		//return "Value: "+ myVal+ ", Left: "+(left == null?null:left.myVal)+ ", Right:"+ (right == null? null: right.myVal);
+	}*/
